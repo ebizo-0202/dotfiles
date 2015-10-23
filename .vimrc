@@ -41,15 +41,44 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 """"""""""""""""""""""""""""""
 " NERDTreeを設定
+""""""""""""""""""""""""""""""
 NeoBundle 'scrooloose/nerdtree'
+
+""""""""""""""""""""""""""""""
+" NeoCompleteを設定
+""""""""""""""""""""""""""""""
+NeoBundle "Shougo/neocomplete.vim"
+" 補完を有効にする
+let g:neocomplete#enable_at_startup = 1
+
+" 補完に時間がかかってもスキップしない
+let g:neocomplete#skip_auto_completion_time = ""
+
+
+""""""""""""""""""""""""""""""
+" caw.vimを設定
+""""""""""""""""""""""""""""""
+NeoBundle "tyru/caw.vim"
+" コメントアウトを切り替えるマッピング
+" \c でカーソル行をコメントアウト
+" 再度 \c でコメントアウトを解除
+" 選択してから複数行の \c も可能
+nmap \c <Plug>(caw:I:toggle)
+vmap \c <Plug>(caw:I:toggle)
+
+" \C でコメントアウトの解除
+nmap \C <Plug>(caw:I:uncomment)
+vmap \C <Plug>(caw:I:uncomment)
 
 """""""""""""""""""""""""""""
 "colorshemeを設定
-
+""""""""""""""""""""""""""""""
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'w0ng/vim-hybrid'
+
 """""""""""""""""""""""""""""
 "Markdownのプレビュー機能を設定
+""""""""""""""""""""""""""""""
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
