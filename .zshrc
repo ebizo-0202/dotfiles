@@ -2,6 +2,9 @@
 # 環境変数
 # -------------------------------------
 export PATH=/usr/local/bin:$PATH
+#export RBENV_ROOT=/usr/local/var/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 # SSHで接続した先で日本語が使えるようにする
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
