@@ -84,6 +84,11 @@ NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 au BufRead,BufNewFile *.md set filetype=markdown
 
+"""""""""""""""""""""""""""""
+"Nerdtreeを設定
+""""""""""""""""""""""""""""""
+NeoBundle 'scrooloose/nerdtree'
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 call neobundle#end()
  
 " Required:
