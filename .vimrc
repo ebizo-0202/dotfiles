@@ -270,3 +270,7 @@ set shiftwidth=2
 set smarttab
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
+
+"ペースト時にインデントを解除する
+imap <C-t> <nop>
+set pastetoggle=<C-t>
