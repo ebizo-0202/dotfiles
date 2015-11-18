@@ -14,40 +14,78 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 " Unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
-
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle "Shougo/neocomplete.vim"
+NeoBundle "tyru/caw.vim"
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'scrooloose/nerdtree'
+call neobundle#end()
+ 
+" Required:
+filetype plugin indent on
+ 
+" 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
+" 毎回聞かれると邪魔な場合もあるので、この設定は任意です。
+NeoBundleCheck
 " http://blog.remora.cx/2010/12/vim-ref-with-unite.html
 """"""""""""""""""""""""""""""
 " Unit.vimの設定
 """"""""""""""""""""""""""""""
-" 入力モードで開始する
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
 let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
-" sourcesを「今開いているファイルのディレクトリ」とする
-noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+let g:gitgutter_system_function       = 'vimproc#system'
+let g:gitgutter_system_error_function = 'vimproc#get_last_status'
+let g:gitgutter_shellescape_function  = 'vimproc#shellescape'
+nnoremap <silent> ,b :<C-u>Unite file_mru buffer<CR>
+" nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,f :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> ,r :<C-u>Unite file_mru buffer<CR>
+" nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
+
+" unite-grepのバックエンドをagに切り替える
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
+let s:unite_ignore_file_rec_patterns=
+      \ ''
+      \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+      \ .'node_modules/\|bower_components/\|'
+      \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
+
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+" unite-grepのキーマップ
+" 選択した文字列をunite-grep
+vnoremap /g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+
+call unite#custom#source(
+      \ 'file_rec/async,file_rec/git',
+      \ 'ignore_pattern',
+      \ s:unite_ignore_file_rec_patterns)
 
 """"""""""""""""""""""""""""""
 " NERDTreeを設定
 """"""""""""""""""""""""""""""
-NeoBundle 'scrooloose/nerdtree'
 
 """"""""""""""""""""""""""""""
 " NeoCompleteを設定
 """"""""""""""""""""""""""""""
-NeoBundle "Shougo/neocomplete.vim"
 " 補完を有効にする
 let g:neocomplete#enable_at_startup = 1
 
@@ -58,7 +96,6 @@ let g:neocomplete#skip_auto_completion_time = ""
 """"""""""""""""""""""""""""""
 " caw.vimを設定
 """"""""""""""""""""""""""""""
-NeoBundle "tyru/caw.vim"
 " コメントアウトを切り替えるマッピング
 " \c でカーソル行をコメントアウト
 " 再度 \c でコメントアウトを解除
@@ -73,30 +110,16 @@ vmap \C <Plug>(caw:I:uncomment)
 """""""""""""""""""""""""""""
 "colorshemeを設定
 """"""""""""""""""""""""""""""
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'w0ng/vim-hybrid'
 
 """""""""""""""""""""""""""""
 "Markdownのプレビュー機能を設定
 """"""""""""""""""""""""""""""
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
 au BufRead,BufNewFile *.md set filetype=markdown
 
 """""""""""""""""""""""""""""
 "Nerdtreeを設定
 """"""""""""""""""""""""""""""
-NeoBundle 'scrooloose/nerdtree'
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-call neobundle#end()
- 
-" Required:
-filetype plugin indent on
- 
-" 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
-" 毎回聞かれると邪魔な場合もあるので、この設定は任意です。
-NeoBundleCheck
  
 "-------------------------
 " End Neobundle Settings.
