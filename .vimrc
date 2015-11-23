@@ -40,6 +40,7 @@ filetype plugin indent on
 " 毎回聞かれると邪魔な場合もあるので、この設定は任意です。
 NeoBundleCheck
 " http://blog.remora.cx/2010/12/vim-ref-with-unite.html
+
 """"""""""""""""""""""""""""""
 " Unit.vimの設定
 """"""""""""""""""""""""""""""
@@ -91,10 +92,6 @@ call unite#custom#source(
       \ s:unite_ignore_file_rec_patterns)
 
 """"""""""""""""""""""""""""""
-" NERDTreeを設定
-""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""
 " NeoCompleteを設定
 """"""""""""""""""""""""""""""
 " 補完を有効にする
@@ -118,9 +115,6 @@ vmap \c <Plug>(caw:I:toggle)
 nmap \C <Plug>(caw:I:uncomment)
 vmap \C <Plug>(caw:I:uncomment)
 
-"""""""""""""""""""""""""""""
-"colorshemeを設定
-""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""
 "Markdownのプレビュー機能を設定
