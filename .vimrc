@@ -78,6 +78,9 @@ nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W
 " grep検索結果の再呼出
 nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 
+" ファイルは tabdrop で開く
+call unite#custom#default_action('file' , 'tabopen')
+
 " unite-grepのキーマップ
 " 選択した文字列をunite-grep
 vnoremap /g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
