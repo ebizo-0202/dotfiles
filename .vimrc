@@ -23,6 +23,14 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle "thinca/vim-quickrun"
+NeoBundle "Shougo/vimproc"
+NeoBundle "osyo-manga/shabadou.vim"
+NeoBundle "osyo-manga/vim-watchdogs"
+NeoBundle "jceb/vim-hier"
+NeoBundle "itchyny/lightline.vim"
+NeoBundle "KazuakiM/vim-qfstatusline"
+NeoBundle "dannyob/quickfixstatus"
 call neobundle#end()
  
 " Required:
@@ -120,7 +128,55 @@ au BufRead,BufNewFile *.md set filetype=markdown
 "Nerdtreeを設定
 """"""""""""""""""""""""""""""
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
- 
+
+
+"""""""""""""""""""""""""""""
+"watvhlogsを設定
+""""""""""""""""""""""""""""""
+" 書き込み後にシンタックスチェックを行う
+let g:watchdogs_check_BufWritePost_enable = 1
+
+" こっちは一定時間キー入力がなかった場合にシンタックスチェックを行う
+" バッファに書き込み後、1度だけ行われる
+let g:watchdogs_check_CursorHold_enable = 1
+
+" watchdogs_checker/_ に設定を記述する事で全ての watchdogs_checker で有効になる
+" hook/close_quickfix/enable_exit 1 で :WatchdogsRun 終了時に quickfix ウィンドウが閉じる
+let g:quickrun_config = {
+\   "watchdogs_checker/_" : {
+\       "hook/close_quickfix/enable_exit" : 1,
+\   },
+\}
+
+" watchdogs.vim の設定を追加
+call watchdogs#setup(g:quickrun_config)
+
+" watchdogsのフックを設定
+let g:quickrun_config["watchdogs_checker/_"] = {
+      \ "outputter/quickfix/open_cmd" : "",
+      \ "hook/qfstatusline_update/enable_exit" : 1,
+      \ "hook/qfstatusline_update/priority_exit" : 4,
+      \ }
+
+" :WatchdogsRun後にlightline.vimを更新
+let g:Qfstatusline#UpdateCmd = function('lightline#update')
+
+" lightline.vimの設定
+let g:lightline = {
+    \ 'mode_map': {'c': 'NORMAL'},
+    \ 'active': {
+    \   'right': [
+    \     [ 'syntaxcheck' ],
+    \   ]
+    \ },
+    \ 'component_expand': {
+    \   'syntaxcheck': 'qfstatusline#Update',
+    \ },
+    \ 'component_type': {
+    \   'syntaxcheck': 'error',
+    \ },
+    \ }
+
 "-------------------------
 " End Neobundle Settings.
 "-------------------------
