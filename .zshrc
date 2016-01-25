@@ -156,3 +156,5 @@ function chpwd() { ls -1 }
 function title {
     echo -ne "\033]0;"$*"\007"
 }
+
+alias tmux="TERM=screen-256color-bce tmux"
