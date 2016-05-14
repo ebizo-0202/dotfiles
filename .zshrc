@@ -125,9 +125,19 @@ alias l="ls -la"
 alias la="ls -la"
 alias l1="ls -1"
 
+# vim
+alias vi="vim"
+
 # tree
 alias tree="tree -NC" # N: 文字化け対策, C:色をつける
 
+# git
+alias gs='git status'
+alias gl='git log --graph'
+alias gg="git grep --break --heading"
+alias gche="git checkout"
+alias gcom="git commit -v"
+alias ga="git add -i"
 
 # -------------------------------------
 # キーバインド
