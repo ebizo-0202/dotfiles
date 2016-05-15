@@ -99,6 +99,15 @@ function vcs_prompt_info() {
 }
 # end VCS
 
+#zshプロンプトにモード表示####################################
+VIMODE='[i]'
+function zle-keymap-select {
+ VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
+ zle reset-prompt
+}
+
+zle -N zle-keymap-select
+
 OK="^_^ "
 NG="X_X "
 
@@ -106,6 +115,7 @@ PROMPT=""
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
 PROMPT+="%F{blue}%~%f"
 PROMPT+="\$(vcs_prompt_info)"
+PROMPT+="\${VIMODE}"
 PROMPT+="
 "
 PROMPT+="%% "
@@ -143,7 +153,8 @@ alias ga="git add -i"
 # キーバインド
 # -------------------------------------
 
-bindkey -e
+bindkey -v
+bindkey -M viins 'jj' vi-cmd-mode
 
 function cdup() {
    echo
