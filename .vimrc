@@ -31,6 +31,9 @@ NeoBundle "jceb/vim-hier"
 NeoBundle "itchyny/lightline.vim"
 NeoBundle "KazuakiM/vim-qfstatusline"
 NeoBundle "dannyob/quickfixstatus"
+NeoBundle "bling/vim-airline"
+NeoBundle "mxw/vim-jsx"
+NeoBundle "othree/yajs.vim"
 call neobundle#end()
  
 " Required:
@@ -126,6 +129,15 @@ au BufRead,BufNewFile *.md set filetype=markdown
 """"""""""""""""""""""""""""""
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+"""""""""""""""""""""""""""""
+"aurlineを設定
+""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = "hybrid"
+let g:airline_section_y = "%{&fileencoding} [%{&fileformat}] (U+%B)"
+
+map H :bp<Enter>
+map L :bn<Enter>
 
 """""""""""""""""""""""""""""
 "watvhlogsを設定

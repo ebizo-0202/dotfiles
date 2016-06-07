@@ -3,6 +3,7 @@
 # -------------------------------------
 export PATH=/usr/local/bin:$PATH
 #export RBENV_ROOT=/usr/local/var/rbenv
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 # SSHで接続した先で日本語が使えるようにする
@@ -15,6 +16,8 @@ export EDITOR=/usr/local/bin/vim
 # ページャ
 export PAGER=/usr/local/bin/vimpager
 export MANPAGER=/usr/local/bin/vimpager
+alias less=$PAGER
+alias zless=$PAGER
 
 
 # -------------------------------------
