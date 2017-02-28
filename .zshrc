@@ -4,8 +4,19 @@
 export PATH=/usr/local/bin:$PATH
 #export RBENV_ROOT=/usr/local/var/rbenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+source $HOME/.phpbrew/bashrc
+[[ -d ~/.rbenv  ]] && \
+  export PATH=${HOME}/.rbenv/bin:${PATH} && \
+  eval "$(rbenv init -)"
+
+# phpenv
+export PATH="$HOME/.phpenv/bin:$PATH"
+eval "$(phpenv init -)"
+
+# GOPATH
+export GOPATH=$HOME/work/go
+export PATH=$PATH:$GOPATH/bin
+
 # SSHで接続した先で日本語が使えるようにする
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -56,6 +67,20 @@ setopt auto_pushd
 # ディレクトリ名を入力するだけでcdできるようにする
 setopt auto_cd
 
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+
+# 重複を記録しない
+setopt hist_ignore_dups
+
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
 # -------------------------------------
 # パス
 # -------------------------------------
@@ -130,10 +155,10 @@ RPROMPT="[%*]"
 # -------------------------------------
 
 # -n 行数表示, -I バイナリファイル無視, svn関係のファイルを無視
-alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
+#alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
 
 # ls
-alias ls="ls -G" # color for darwin
+#alias ls="ls -G" # color for darwin
 alias l="ls -la"
 alias la="ls -la"
 alias l1="ls -1"
@@ -182,3 +207,13 @@ function title {
 }
 
 alias tmux="TERM=screen-256color-bce tmux"
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/y-ichikawa/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/y-ichikawa/google-cloud-sdk/completion.zsh.inc'
+
+# bundle
+export PATH="$HOME/.rbenv/shims:$PATH"
+

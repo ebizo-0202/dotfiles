@@ -34,6 +34,9 @@ NeoBundle "dannyob/quickfixstatus"
 NeoBundle "bling/vim-airline"
 NeoBundle "mxw/vim-jsx"
 NeoBundle "othree/yajs.vim"
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'pangloss/vim-javascript'
+
 call neobundle#end()
  
 " Required:
@@ -133,7 +136,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "aurlineを設定
 """"""""""""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = "hybrid"
+" let g:airline_theme = "dark"
 let g:airline_section_y = "%{&fileencoding} [%{&fileformat}] (U+%B)"
 
 map H :bp<Enter>
