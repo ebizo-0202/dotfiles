@@ -2,13 +2,26 @@
 # 環境変数
 # -------------------------------------
 export PATH=/usr/local/bin:$PATH
-#export RBENV_ROOT=/usr/local/var/rbenv
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
+export RBENV_ROOT=/usr/local/var/rbenv
+# export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 # SSHで接続した先で日本語が使えるようにする
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# GOPATH
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+# GAE fo GO
+export PATH=$HOME/go_appengine:$PATH
+
+# pyenv
+PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
 
 # エディタ
 export EDITOR=/usr/local/bin/vim
@@ -130,7 +143,7 @@ RPROMPT="[%*]"
 # -------------------------------------
 
 # -n 行数表示, -I バイナリファイル無視, svn関係のファイルを無視
-alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
+alias grep="grep --color --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
 
 # ls
 alias ls="ls -G" # color for darwin
@@ -182,3 +195,29 @@ function title {
 }
 
 alias tmux="TERM=screen-256color-bce tmux"
+
+# history
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+
+# 重複を記録しない
+setopt hist_ignore_dups
+
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
+
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+export PATH=$HOME/.pyenv/shims:$PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ichikawayuki/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ichikawayuki/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ichikawayuki/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ichikawayuki/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

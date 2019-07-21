@@ -32,8 +32,15 @@ NeoBundle "itchyny/lightline.vim"
 NeoBundle "KazuakiM/vim-qfstatusline"
 NeoBundle "dannyob/quickfixstatus"
 NeoBundle "bling/vim-airline"
+NeoBundle 'pangloss/vim-javascript'
 NeoBundle "mxw/vim-jsx"
 NeoBundle "othree/yajs.vim"
+NeoBundle 'maxmellon/vim-jsx-pretty'
+NeoBundle 'glidenote/memolist.vim'
+NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'fatih/vim-go' 
+NeoBundle 'posva/vim-vue'
 call neobundle#end()
  
 " Required:
@@ -125,6 +132,15 @@ vmap \C <Plug>(caw:I:uncomment)
 au BufRead,BufNewFile *.md set filetype=markdown
 
 """""""""""""""""""""""""""""
+"memolist.vimの設定
+""""""""""""""""""""""""""""""
+let g:memolist_path = $HOME . '/Dropbox/メモ'
+let g:memolist_memo_suffix = "txt"
+nnoremap mn  :MemoNew<CR>
+nnoremap ml  :MemoList<CR>
+nnoremap mg  :MemoGrep<CR>
+
+"""""""""""""""""""""""""""""
 "Nerdtreeを設定
 """"""""""""""""""""""""""""""
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -133,7 +149,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "aurlineを設定
 """"""""""""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = "hybrid"
+let g:airline_theme = "dark"
 let g:airline_section_y = "%{&fileencoding} [%{&fileformat}] (U+%B)"
 
 map H :bp<Enter>
@@ -382,3 +398,9 @@ if &term =~ "xterm"
     cnoremap <special> <Esc>[200~ <nop>
     cnoremap <special> <Esc>[201~ <nop>
 endif
+
+"-------------------------
+" jsx
+"-------------------------
+" javascriptとJSXの2つのファイルタイプを指定する
+au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
