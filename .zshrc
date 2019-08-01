@@ -221,3 +221,17 @@ if [ -f '/Users/ichikawayuki/Downloads/google-cloud-sdk/path.zsh.inc' ]; then so
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ichikawayuki/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ichikawayuki/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+function tmux-remake-socket () {
+    if [ ! $TMUX ]; then
+        return
+    fi
+    tmux_socket_file=`echo $TMUX|awk -F, '{print $1}'`
+    if [ ! -S $tmux_socket_file ]; then
+        mkdir -m700 `dirname $tmux_socket_file` 2> /dev/null
+        killall -SIGUSR1 tmux
+    else
+        echo tmux unix domain socket exists! nothing to do.
+    fi
+    unset tmux_socket_file
+}

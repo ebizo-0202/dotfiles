@@ -41,6 +41,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'fatih/vim-go' 
 NeoBundle 'posva/vim-vue'
+NeoBundle 'altercation/vim-colors-solarized'
 call neobundle#end()
  
 " Required:
@@ -212,8 +213,14 @@ let g:lightline = {
 " ------------------------------------------------------
 autocmd ColorScheme * highlight LineNr ctermfg=200
 syntax on
-set background=dark
-colorscheme hybrid
+" set background=dark
+" colorscheme hybrid
+"-------------------------
+" 新しいカラースキームお試し
+"-------------------------
+syntax enable
+set background=dark    "または light
+colorscheme solarized
 
 " Anywhere SID.
 function! s:SID_PREFIX()
@@ -404,3 +411,5 @@ endif
 "-------------------------
 " javascriptとJSXの2つのファイルタイプを指定する
 au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
+
+

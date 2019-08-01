@@ -1,0 +1,4 @@
+DOTPATH := $(MAKEFILE_LIST)
+
+e: 
+	echo $(DOTPATH)
