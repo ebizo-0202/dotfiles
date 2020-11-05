@@ -6,3 +6,6 @@
 [alias]
 	o = checkout
 	c = commit -v
+	p = pull
+	pu = push
+	puu = push -u
