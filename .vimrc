@@ -213,14 +213,14 @@ let g:lightline = {
 " ------------------------------------------------------
 autocmd ColorScheme * highlight LineNr ctermfg=200
 syntax on
-" set background=dark
-" colorscheme hybrid
+set background=dark
+colorscheme hybrid
 "-------------------------
 " 新しいカラースキームお試し
 "-------------------------
-syntax enable
-set background=dark    "または light
-colorscheme solarized
+"syntax enable
+"set background=dark    "または light
+"colorscheme solarized
 
 " Anywhere SID.
 function! s:SID_PREFIX()

@@ -22,15 +22,18 @@ PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 # エディタ
 export EDITOR=/usr/local/bin/vim
 
 # ページャ
-export PAGER=/usr/local/bin/vimpager
-export MANPAGER=/usr/local/bin/vimpager
-alias less=$PAGER
-alias zless=$PAGER
+# export PAGER=/usr/local/bin/vimpager
+# export MANPAGER=/usr/local/bin/vimpager
+# alias less=$PAGER
+# alias zless=$PAGER
 
 
 # -------------------------------------
@@ -164,6 +167,9 @@ alias gg="git grep --break --heading"
 alias gche="git checkout"
 alias gcom="git commit -v"
 alias ga="git add -i"
+alias g='git'
+alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+
 
 # -------------------------------------
 # キーバインド
@@ -214,7 +220,6 @@ setopt EXTENDED_HISTORY
 
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 export PATH=$HOME/.pyenv/shims:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ichikawayuki/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ichikawayuki/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -235,3 +240,6 @@ function tmux-remake-socket () {
     fi
     unset tmux_socket_file
 }
+
+export PATH=$HOME/.nodenv/bin:$PATH
+eval "$(nodenv init -)"
