@@ -1,0 +1,8 @@
+[user]
+	name = ebizo-0202
+	email = yuki.ichikawa@andpad.co.jp
+[core]
+	editor = vi
+[alias]
+	o = checkout
+	c = commit -v
