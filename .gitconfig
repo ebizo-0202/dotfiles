@@ -9,3 +9,4 @@
 	p = pull
 	pu = push
 	puu = push -u
+	b = checkout -b

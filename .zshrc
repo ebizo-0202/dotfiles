@@ -165,11 +165,15 @@ alias gs='git status'
 alias gl='git log --graph'
 alias gg="git grep --break --heading"
 alias gche="git checkout"
-alias gcom="git commit -v"
-alias ga="git add -i"
+alias gcom="git commit -v -n"
+alias ga="git add"
+alias gaa="git add ."
+alias gp="git push origin HEAD"
+alias gf="git fetch"
 alias g='git'
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
+alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOTE BRANCH>" | head -n 1 | sed "s/^\*\s*//" | sed "s/remotes\/[^\/]*\/\(\S*\)/\1 \0/"`'
 
 
 # -------------------------------------
@@ -244,3 +248,4 @@ function tmux-remake-socket () {
 
 export PATH=$HOME/.nodenv/bin:$PATH
 eval "$(nodenv init -)"
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
