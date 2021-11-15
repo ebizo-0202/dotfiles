@@ -3,6 +3,7 @@
 	email = yuki.ichikawa@andpad.co.jp
 [core]
 	editor = vi
+	hooksPath = /dev/null
 [alias]
 	o = checkout
 	c = commit -v
